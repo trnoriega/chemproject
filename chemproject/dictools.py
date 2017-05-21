@@ -1,16 +1,16 @@
+import nltk
 from urllib.request import Request, urlopen
+import re
 from bs4 import BeautifulSoup
 from chemspipy import ChemSpider
 cs = ChemSpider('0201ba66-585d-4135-9e6b-d28ba4724fcf')
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 from inspect import getmembers, isfunction
-import nltk
-import re
 
 def link_to_soup(link):
     '''
-    support function for dictionary_maker and Search and Filter.
+    support function for dictionary_maker and search_and_filter.
     makes a beautiful soup object from link. Disguises itself
     as a browser so its not confused for a bot
 
