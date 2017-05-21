@@ -7,6 +7,15 @@ cs = ChemSpider('0201ba66-585d-4135-9e6b-d28ba4724fcf')
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 from inspect import getmembers, isfunction
+import subprocess
+
+def write_to_clipboard(output):
+    process = subprocess.Popen(
+        'pbcopy', env={'LANG': 'en_US.UTF-8'}, stdin=subprocess.PIPE)
+    process.communicate(output.encode('utf-8'))
+
+def read_from_clipboard():
+    return subprocess.check_output('pbpaste', env={'LANG': 'en_US.UTF-8'}).decode('utf-8')
 
 def link_to_soup(link):
     '''
@@ -73,9 +82,10 @@ def search_and_filter(number,
 
     if len(links_checked) >= 1:
         for link in links_checked:
-            soup = linkToSoup(link)
+            print(link)
+            soup = link_to_soup(link)
             if soup:
-                page_title = soup.find('h2', class_='page_title')
+                page_title = soup.find('h2', class_='pageTitle')
                 page_headings = soup.find_all('div', class_='field field-type-header')
                 title = page_title.text.split('|')
                 title = [word.strip() for word in title]
