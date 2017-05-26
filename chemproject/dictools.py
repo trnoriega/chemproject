@@ -228,20 +228,22 @@ def alternate_maker():
     fema list of all compounds and their links
     """
     fema_library_link = 'http://www.femaflavor.org/flavor/library?page='
-    fema_base_link = 'http://www.femaflavor.org
+    fema_base_link = 'http://www.femaflavor.org'
     strainer = SoupStrainer('tbody')
-    soup = link_to_soup(fema_library_link, strainer=strainer)'
-    rows = soup.findAll('tr')
     data = {}
-    for row in rows:
-        columns = row.find_all('td')
-        for col in columns:
-            if col.string:
-                num = int(col.string)
-                data[num] = {}
-            elif col.a:
-                data[num]['name'] = col.a.string
-                full_link = fema_base_link + col.a.get('href')
-                data[num]['link'] = full_link
-        print('.', end='')
+    for i in range(28):
+        new_link = fema_library_link + str(i)
+        soup = link_to_soup(new_link, strainer=strainer)
+        rows = soup.findAll('tr')
+        for row in rows:
+            columns = row.find_all('td')
+            for col in columns:
+                if col.string:
+                    num = int(col.string)
+                    data[num] = {}
+                elif col.a:
+                    data[num]['name'] = str(col.a.string)
+                    full_link = fema_base_link + col.a.get('href')
+                    data[num]['link'] = full_link
+            print('.', end='')
     return data
