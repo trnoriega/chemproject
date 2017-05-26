@@ -1,14 +1,14 @@
 import nltk
 from urllib.request import Request, urlopen
 import re
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, SoupStrainer
 from chemspipy import ChemSpider
 cs = ChemSpider('0201ba66-585d-4135-9e6b-d28ba4724fcf')
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 from inspect import getmembers, isfunction
 
-def link_to_soup(link):
+def link_to_soup(link, strainer=None):
     '''
     support function for dictionary_maker and search_and_filter.
     makes a beautiful soup object from link. Disguises itself
@@ -24,7 +24,7 @@ def link_to_soup(link):
     try:
         req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
         page = urlopen(req).read()
-        soup = BeautifulSoup(page, 'lxml')
+        soup = BeautifulSoup(page, 'lxml', parse_only=strainer)
     except:
         return None
 
@@ -219,3 +219,29 @@ def dictionary_maker(num_iterator):
         else:
             print('.', end='')
     return dictionary
+
+
+
+def alternate_maker():
+    """
+    An alternate to the top above dictionary_maker based on finding a
+    fema list of all compounds and their links
+    """
+    fema_library_link = 'http://www.femaflavor.org/flavor/library?page='
+    fema_base_link = 'http://www.femaflavor.org
+    strainer = SoupStrainer('tbody')
+    soup = link_to_soup(fema_library_link, strainer=strainer)'
+    rows = soup.findAll('tr')
+    data = {}
+    for row in rows:
+        columns = row.find_all('td')
+        for col in columns:
+            if col.string:
+                num = int(col.string)
+                data[num] = {}
+            elif col.a:
+                data[num]['name'] = col.a.string
+                full_link = fema_base_link + col.a.get('href')
+                data[num]['link'] = full_link
+        print('.', end='')
+    return data
