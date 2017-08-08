@@ -32,8 +32,41 @@ In this notebook I pair the chemicals found above with their RDkit representatio
 
 The [RDkit](http://www.rdkit.org/docs/Overview.html) is a chemical informatics toolkit. It allows for the calculation of chemical descriptors which can then be used as features for machine learning tasks. 
 
-By this point I have 2170 chemicals that can be used to train a machine learning classifier. 
+By this point I have __2170 chemicals__ that can be used to train a machine learning classifier. 
 
-## Finding labels for machine learning classification
+## Unsupervised clustering based on flavor descriptors
+
+__[5_descriptor_clustering](5_descriptor_clustering.ipynb)__
+
+In this notebook I use use K-Means clustering the group the flavor chemicals based on their flavor and aroma descriptors.
+
+I found two minimal groups: 
+
+- One very large __fruity, floral__ group with 1880 chemicals
+- A smaller __savory, roast__ group with 290 chemicals
+
+They can be visualized with word clouds of all the descriptors in each group:
+
+![](Images/1_wordcloud.png')
+
+I can now use these labels to train a supervised machine learning classifier.
 
 ## Calculating chemical properties to use as machine learning features
+
+__[6_property_calculations](6_property_calculations.ipynb)__
+
+In this notebook I use the RDKit to calculate several quantitative chemical properties. I also generated three different "chemical fingerprints" based on either chemical fragments or topology for each molecule. In all, for each chemical __4422 features__ were generated.
+
+## Training and testing a classifier to identify chemical class
+
+__[7_algorithm_comparison](7_algorithm_comparison.ipynb)__
+
+In this notebook ...
+
+__[8_parameter_optimization](8_parameter_optimization.ipynb)__
+
+In this notebook ...
+
+__[9_estimator_analysis](9_estimator_analysis.ipynb)__
+
+In this notebook ...
