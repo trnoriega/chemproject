@@ -65,7 +65,7 @@ In this notebook I compare unoptimized Naive Bayes, Support Vector Machines, Ada
 
 ![](Images/2_unoptimized_comparison.png)
 
-Based on the results in this notebook I decided to proceed with parameter optimization for:
+Based on these results I decided to proceed with parameter optimization for:
 
 - __Adaboost__
 - __Logistic Regression__
@@ -75,7 +75,11 @@ Support Vector Machines performed badly, and Naive Bayes don't have many paramet
 
 __[8_parameter_optimization](8_parameter_optimization.ipynb)__
 
-In this notebook ...
+In this notebook I exhaustively searched hyperparamter space for the AdaBoost, Logistic Regression, and Mulptiple-layer Perceptron classifiers.
+
+![](Images/3_optimized_comparison.png)
+
+These results indicate that the optimized __Logistic Regression classifier performed best__ with this dataset. 
 
 __[9_estimator_analysis](9_estimator_analysis.ipynb)__
 
