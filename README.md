@@ -47,7 +47,7 @@ I found two minimal groups:
 
 They can be visualized with word clouds of all the descriptors in each group:
 
-![](Images/1_wordcloud.png')
+![](Images/1_wordcloud.png)
 
 I can now use these labels to train a supervised machine learning classifier.
 
@@ -61,7 +61,17 @@ In this notebook I use the RDKit to calculate several quantitative chemical prop
 
 __[7_algorithm_comparison](7_algorithm_comparison.ipynb)__
 
-In this notebook ...
+In this notebook I compare unoptimized Naive Bayes, Support Vector Machines, Adaboost, Logistic Regression, and Multi-layer perceptron classifiers to see if any stand out with this dataset. 
+
+![](Images/2_unoptimized_comparison.png)
+
+Based on the results in this notebook I decided to proceed with parameter optimization for:
+
+- __Adaboost__
+- __Logistic Regression__
+- __Multi-layer perceptron__
+
+Support Vector Machines performed badly, and Naive Bayes don't have many parameters to optimize, although its worth noting that the Bernoulli Naive Bayes performed as well, if not better in terms of recall, than the other classifiers.
 
 __[8_parameter_optimization](8_parameter_optimization.ipynb)__
 
