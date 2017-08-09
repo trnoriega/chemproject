@@ -38,11 +38,11 @@ By this point I have __2170 chemicals__ that can be used to train a machine lear
 
 __[5_descriptor_clustering](5_descriptor_clustering.ipynb)__
 
-In this notebook I use use K-Means clustering the group the flavor chemicals based on their flavor and aroma descriptors.
+In this notebook I use K-Means clustering to group the flavor chemicals based on their flavor and aroma descriptors.
 
 I found two minimal groups: 
 
-- One very large __fruity, floral__ group with 1880 chemicals
+- One large __fruity, floral__ group with 1880 chemicals
 - A smaller __savory, roast__ group with 290 chemicals
 
 They can be visualized with word clouds of all the descriptors in each group:
@@ -55,13 +55,15 @@ I can now use these labels to train a supervised machine learning classifier.
 
 __[6_property_calculations](6_property_calculations.ipynb)__
 
-In this notebook I use the RDKit to calculate several quantitative chemical properties. I also generated three different "chemical fingerprints" based on either chemical fragments or topology for each molecule. In all, for each chemical __4422 features__ were generated.
+In this notebook I use the RDKit to calculate several quantitative chemical properties. I also generated three different "chemical fingerprints" based on either chemical fragments or topology for each molecule. In all __4422 features__ were generated for each chemical.
 
 ## Training and testing a classifier to identify chemical class
 
 __[7_algorithm_comparison](7_algorithm_comparison.ipynb)__
 
-In this notebook I compare unoptimized Naive Bayes, Support Vector Machines, Adaboost, Logistic Regression, and Multi-layer perceptron classifiers to see if any stand out with this dataset. 
+In this notebook I compare unoptimized Naive Bayes, Support Vector Machines, Adaboost, Logistic Regression, and Multi-layer Perceptron classifiers to see if any stand out with this dataset. 
+
+A comparison of the the average and 95% confidence intervals in terms of precision, recall, Matthews correlation, and area under Receiver Operating Characteristic curve (roc_auc) for the unoptimized classifiers: 
 
 ![](Images/2_unoptimized_comparison.png)
 
@@ -71,11 +73,13 @@ Based on these results I decided to proceed with parameter optimization for:
 - __Logistic Regression__
 - __Multi-layer perceptron__
 
-Support Vector Machines performed badly, and Naive Bayes don't have many parameters to optimize, although its worth noting that the Bernoulli Naive Bayes performed as well, if not better in terms of recall, than the other classifiers.
+Support Vector Machines performed badly, and Naive Bayes don't have many parameters to optimize, although its worth noting that the Bernoulli Naive Bayes performed as well (if not better in terms of recall) than the other top classifiers.
 
 __[8_parameter_optimization](8_parameter_optimization.ipynb)__
 
-In this notebook I exhaustively searched hyperparamter space for the AdaBoost, Logistic Regression, and Mulptiple-layer Perceptron classifiers.
+In this notebook I exhaustively searched hyper-parameter space for the AdaBoost, Logistic Regression, and Multiple-layer Perceptron classifiers.
+
+A comparison of the average scores and 95% confidence interval of the three optimized estimators:
 
 ![](Images/3_optimized_comparison.png)
 
@@ -85,9 +89,11 @@ __[9_estimator_analysis](9_estimator_analysis.ipynb)__
 
 In this notebook I look at the best classifier and how it performs on the dataset. 
 
-The best classifier was a [Logistic Regression](http://scikit-learn.org/stable/modules/linear_model.html#logistic-regression) algorithim with a regularization __C parameter of 0.1__
+The best classifier was a [Logistic Regression](http://scikit-learn.org/stable/modules/linear_model.html#logistic-regression) algorithm with :
+- Regularization __C parameter of 0.1__
+- An roc_auc score of 0.76 on the held-out test data, which indicates that the estimator has a __0.76 probability of ranking a random savory chemical above a random non-savory chemical__.
 
-The validation curve of this parameter shows that this C value is at the sweet spot with the highest score, and lowest amount of variability:
+The **_validation curve_** of this parameter shows that its C value is at the sweet spot with the highest score, and lowest amount of variability:
 
 ![](Images/3_val_curve.png)
 
@@ -95,8 +101,8 @@ The validation curve of this parameter shows that this C value is at the sweet s
 
 - Anything above 0.1 produces an overfit (high variance) model, with high training scores that don't generalize to the test data.
 
-The learning curve o this parameter argues that the current model is still relatively overfit (high variance) due to a persitent gap between training and test scores, regardless of training example size:
+The **_learning curve_** for this parameter argues that the current model is still relatively overfit (high variance) due to a persistent gap between training and test scores, regardless of training example size:
 
 ![](Images/4_learn_curve.png)
 
-This suggests that the best way to further improve this estimator would be to __add more training examples__.
+This suggests that the best way to further improve this estimator would be to __add more training examples__. 
