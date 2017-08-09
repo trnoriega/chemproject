@@ -83,4 +83,16 @@ These results indicate that the optimized __Logistic Regression classifier perfo
 
 __[9_estimator_analysis](9_estimator_analysis.ipynb)__
 
-In this notebook ...
+In this notebook I look at the best classifier and how it performs on the dataset. 
+
+The best classifier was a [Logistic Regression](http://scikit-learn.org/stable/modules/linear_model.html#logistic-regression) algorithim with a regularization __C parameter of 0.1__
+
+The validation curve of this parameter shows that this C value is at the sweet spot with the highest score, and lowest amount of variability:
+
+![](Images/3_val_curve.png)
+
+- Anything below 0.1 produces an underfit (high bias) model, with low training and test scores. 
+
+- Anything above 0.1 produces an overfit (high variance) model, with high training scores that don't generalize to the test data.
+
+
