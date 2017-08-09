@@ -95,4 +95,8 @@ The validation curve of this parameter shows that this C value is at the sweet s
 
 - Anything above 0.1 produces an overfit (high variance) model, with high training scores that don't generalize to the test data.
 
+The learning curve o this parameter argues that the current model is still relatively overfit (high variance) due to a persitent gap between training and test scores, regardless of training example size:
 
+![](Images/4_learn_curve.png)
+
+This suggests that the best way to further improve this estimator would be to __add more training examples__.
