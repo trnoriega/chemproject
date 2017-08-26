@@ -60,7 +60,7 @@ I can now use these labels to train a supervised machine learning classifier.
 
 __[6_property_calculations](6_property_calculations.ipynb)__
 
-In this notebook I use the RDKit to calculate several quantitative chemical properties. I also generated three different "chemical fingerprints" based on either chemical fragments or [topology](http://infochim.u-strasbg.fr/cgi-bin/predserv-cgi/ChemAxon/JChem/doc/user/ECFP.html) for each molecule. In all __4422 features__ were generated for each chemical.
+In this notebook I use the RDKit to calculate several quantitative chemical properties. I also generated three different "chemical fingerprints" based on either [chemical fragments](http://rdkit.org/docs/api/rdkit.Chem.MACCSkeys-pysrc.html) , [circular topology](http://infochim.u-strasbg.fr/cgi-bin/predserv-cgi/ChemAxon/JChem/doc/user/ECFP.html), or [path-based topology](http://www.daylight.com/dayhtml/doc/theory/theory.finger.html) for each molecule. In all __4422 features__ were generated for each chemical.
 
 ## Training and testing a classifier to identify chemical class
 
