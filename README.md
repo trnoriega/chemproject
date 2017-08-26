@@ -1,6 +1,11 @@
 # Flavor chemical database and classifier
 
-In this project I created (1) a database of flavor chemicals and their flavor descriptors, (2) Found the underlying flavor profiles in the database to create labels for a machine learning classifier, and (3) calculated chemical properties that could be used as features in a machine learning classifier, (4) trained a classifier to identify chemical class.  
+This project has 4 main parts: 
+
+1) Scrape two flavor industry websites to create a database of flavor chemicals and their flavor descriptors 
+2) Find the underlying flavor profiles in the database to create labels for a machine learning classifier
+3) Calculate chemical properties that could be used as features in a machine learning classifier
+4) Train a classifier to identify chemical class
 
 ## Making the flavor chemical database 
 
